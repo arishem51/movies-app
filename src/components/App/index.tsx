@@ -1,5 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
+import Movies from "../Movies";
 
 const GlobalStyles = createGlobalStyle`
 /*
@@ -60,7 +61,7 @@ function App() {
   return (
     <React.Fragment>
       <GlobalStyles />
-      <div>Hello World</div>
+      <Movies />
     </React.Fragment>
   );
 }
