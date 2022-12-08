@@ -9,7 +9,7 @@ const Section = styled.section`
       rgba(${COLORS.darkBlue}, 0) 100%
     ),
     url("https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/8bcoRX3hQRHufLPSDREdvr3YMXx.jpg");
-  width: 1300px;
+  width: clamp(300px, 75%, 1700px);
   height: 300px;
   background-position: top center;
   background-size: cover;

@@ -1,6 +1,7 @@
 import { List as ListANTD } from "antd";
 import { PaginationConfig } from "antd/es/pagination";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { useDynamicColumn } from "../../hook/useDynamicColumn";
 import { Movie } from "../../types/movies";
 
 type Props = {
@@ -11,10 +12,11 @@ type Props = {
 };
 
 const List = ({ movies, paginationConfig, loading, renderItem }: Props) => {
+  const { column } = useDynamicColumn();
   return (
     <ListANTD
       grid={{
-        column: 10,
+        column,
         gutter: 16,
       }}
       dataSource={movies}

@@ -7,17 +7,28 @@ const InputSearch = styled(Input.Search)`
   margin-top: 56px;
 `;
 
+const FluidTitle = styled.h1`
+  font-size: clamp(0.5rem, 2vw + 1rem, 4rem);
+  line-height: clamp(0.7rem, 2vw + 1rem, 4.2rem);
+  color: white;
+  font-weight: bold;
+`;
+
+const FluidParagraph = styled.p`
+  font-size: clamp(0.5rem, 1vw + 1rem, 3rem);
+  line-height: clamp(1rem, 2vw + 1rem, 3rem);
+  color: white;
+`;
+
 const Search = () => {
   const handleSearch = (value: string) => console.log(value);
 
   return (
     <SearchBackground>
-      <Text size={48} strong>
-        Welcome
-      </Text>
-      <Text size={36}>
+      <FluidTitle>Welcome</FluidTitle>
+      <FluidParagraph>
         Millions of movies, TV shows and people to discover. Explore now.
-      </Text>
+      </FluidParagraph>
       <InputSearch
         placeholder="Film name"
         allowClear
