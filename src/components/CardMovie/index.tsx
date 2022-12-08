@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BORDER_RADIUS, BOX_SHADOWS } from "../../constant";
 import { Movie } from "../../types/movies";
@@ -18,8 +19,6 @@ const Img = styled.img`
   height: 100%;
   border-radius: ${BORDER_RADIUS[8]};
 `;
-
-const Anchor = styled.a``;
 
 const Figcaption = styled.figcaption`
   --space: 12px;
@@ -52,13 +51,14 @@ const CardMovie = ({
   title,
   vote_average,
   poster_path,
+  id,
 }: Props) => {
   return (
     <Wrapper>
       <ImageWrapper>
-        <Anchor href="/">
+        <Link to={`movies/${id}`}>
           <Img src={`https://image.tmdb.org/t/p/original/${poster_path}`} />
-        </Anchor>
+        </Link>
         <ProgressBarWrapper>
           <CircleProgessBar value={vote_average * 10} />
         </ProgressBarWrapper>

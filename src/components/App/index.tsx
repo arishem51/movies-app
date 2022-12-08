@@ -1,6 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import Movies from "../Movies";
+import Movies from "../Layout";
 import { QueryProvider } from "../QueryProvider";
 
 const GlobalStyles = createGlobalStyle`
