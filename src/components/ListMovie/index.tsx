@@ -1,5 +1,5 @@
 import { List, Tabs } from "antd";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { useMoviesTheaters } from "../../hook/react-query/movies";
 import { Movie } from "../../types/movies";
@@ -33,6 +33,10 @@ const ListMovie = () => {
     );
   }, []);
 
+  const moviesData = data?.pages.find(
+    (item) => item.page === currentPage
+  )?.results;
+
   return (
     <Wrapper>
       <Text size={28} color="black" strong style={{ marginBottom: 10 }}>
@@ -52,9 +56,7 @@ const ListMovie = () => {
                   column: 10,
                   gutter: 16,
                 }}
-                dataSource={
-                  data?.pages.find((item) => item.page === currentPage)?.results
-                }
+                dataSource={moviesData}
                 pagination={{
                   onChange: (pageSelect) => {
                     const isPageRender = listPageHasRender.current?.find(
