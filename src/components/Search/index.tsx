@@ -19,7 +19,7 @@ const Search = () => {
         Millions of movies, TV shows and people to discover. Explore now.
       </Text>
       <InputSearch
-        placeholder="input search text"
+        placeholder="Film name"
         allowClear
         enterButton="Search"
         size="large"
