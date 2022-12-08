@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 // Hack column of Antd List for responsive :>
 
@@ -22,7 +22,7 @@ export const useDynamicColumn = () => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
