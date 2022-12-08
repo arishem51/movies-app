@@ -1,9 +1,8 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { List, Tabs } from "antd";
-import axios from "axios";
 import { useCallback } from "react";
 import styled from "styled-components";
-import { Movie, MoviePage } from "../../types/movies";
+import { useMoviesTheaters } from "../../hook/react-query/movies";
+import { Movie } from "../../types/movies";
 import CardMovie from "../CardMovie";
 import Text from "../Text";
 
@@ -15,18 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const ListMovie = () => {
-  const { isLoading, data, hasNextPage } = useInfiniteQuery({
-    queryKey: ["movies", "infinite"],
-    queryFn: async () => {
-      const list = await axios.get<MoviePage>(
-        "https://api.themoviedb.org/3/movie/now_playing?api_key=9069d3a89486e93b4a352f983c84fff7&language=vi-VN&page=1"
-      );
-      return list.data;
-    },
-    getNextPageParam: (lastPage) => {
-      return lastPage.total_pages - lastPage.page;
-    },
-  });
+  const { isLoading, data, hasNextPage } = useMoviesTheaters();
 
   const onChange = (key: string) => {
     console.log(key);

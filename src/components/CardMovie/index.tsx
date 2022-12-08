@@ -1,8 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import styled from "styled-components";
 import { BORDER_RADIUS, BOX_SHADOWS } from "../../constant";
-import { ImageMovie, Movie } from "../../types/movies";
+import { Movie } from "../../types/movies";
 import CircleProgessBar from "../CircleProgressBar";
 import Title from "../Title";
 
@@ -43,6 +41,10 @@ const ProgressBarWrapper = styled("div")`
   width: 34px;
 `;
 
+const NoWrapText = styled(Title)`
+  white-space: nowrap;
+`;
+
 type Props = Movie;
 
 const CardMovie = ({
@@ -62,7 +64,7 @@ const CardMovie = ({
         </ProgressBarWrapper>
       </ImageWrapper>
       <Figcaption>
-        <Title level={5}>{title.slice(0, 10) + "..."}</Title>
+        <NoWrapText level={5}>{title.slice(0, 12) + "..."}</NoWrapText>
         <Paragraph>{release_date}</Paragraph>
       </Figcaption>
     </Wrapper>

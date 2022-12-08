@@ -11,6 +11,7 @@ const Title = (props: TitleProps) => {
       style={{
         color: "var(--text-color)",
         marginBottom: "var(--margin-bottom,0)",
+        ...props?.style,
       }}
     />
   );
