@@ -1,5 +1,5 @@
 import { List, Tabs } from "antd";
-import { useCallback, useMemo } from "react";
+import { useCallback, useRef, useState } from "react";
 import styled from "styled-components";
 import { useMoviesTheaters } from "../../hook/react-query/movies";
 import { Movie } from "../../types/movies";
@@ -14,27 +14,18 @@ const Wrapper = styled.div`
 `;
 
 const ListMovie = () => {
-  const { isLoading, data, hasNextPage, fetchNextPage, isFetchingNextPage } =
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } =
     useMoviesTheaters();
 
-  const moviesData = useMemo(() => {
-    if (!data?.pages) {
-      return [];
-    }
-    const newArr = [];
-    for (const page of data.pages) {
-      for (const movie of page.results) {
-        newArr.push(movie);
-      }
-    }
-    return newArr;
-  }, [data]);
+  const listPageHasRender = useRef([1]);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const onChange = (key: string) => {
     console.log(key);
   };
 
-  const renderMovies = useCallback((item: Movie) => {
+  const renderItem = useCallback((item: Movie) => {
     return (
       <List.Item key={item.id}>
         <CardMovie {...item} />
@@ -59,27 +50,29 @@ const ListMovie = () => {
               <List
                 grid={{
                   column: 10,
-                  xxl: 10,
-                  xl: 7,
-                  lg: 6,
-                  md: 5,
-                  sm: 4,
-                  xs: 3,
                   gutter: 16,
                 }}
-                dataSource={moviesData}
+                dataSource={
+                  data?.pages.find((item) => item.page === currentPage)?.results
+                }
                 pagination={{
-                  total: data?.pages[0].total_results,
-                  pageSize: 20,
-                  showLessItems: true,
-                  onChange: (page) => {
-                    if (hasNextPage) {
-                      fetchNextPage({ pageParam: page });
+                  onChange: (pageSelect) => {
+                    const isPageRender = listPageHasRender.current?.find(
+                      (item) => item === pageSelect
+                    );
+                    // If has next page and page select haven't render yet so fetch new page
+                    if (hasNextPage && !isPageRender) {
+                      fetchNextPage({ pageParam: pageSelect });
+                      listPageHasRender.current.push(pageSelect);
                     }
+                    setCurrentPage(pageSelect);
                   },
+                  pageSize: 20,
+                  total: 1000,
+                  showSizeChanger: false,
                 }}
-                loading={isLoading || isFetchingNextPage}
-                renderItem={renderMovies}
+                loading={isFetching || isFetchingNextPage}
+                renderItem={renderItem}
               />
             ),
           },
