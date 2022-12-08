@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+// Hack column of Antd List for responsive :>
+
 export const useDynamicColumn = () => {
   const [column, setColumn] = useState(10);
 
