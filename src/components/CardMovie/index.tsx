@@ -1,10 +1,8 @@
-import {
-  buildStyles,
-  CircularProgressbarWithChildren,
-} from "react-circular-progressbar";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import styled from "styled-components";
 import { BORDER_RADIUS, BOX_SHADOWS } from "../../constant";
-import { Movie } from "../../types/movies";
+import { ImageMovie, Movie } from "../../types/movies";
 import CircleProgessBar from "../CircleProgressBar";
 import Title from "../Title";
 
@@ -47,19 +45,24 @@ const ProgressBarWrapper = styled("div")`
 
 type Props = Movie;
 
-const CardMovie = ({ release_date, title, vote_average }: Props) => {
+const CardMovie = ({
+  release_date,
+  title,
+  vote_average,
+  poster_path,
+}: Props) => {
   return (
     <Wrapper>
       <ImageWrapper>
         <Anchor href="123">
-          <Img src={"123"} />
+          <Img src={`https://image.tmdb.org/t/p/original/${poster_path}`} />
         </Anchor>
         <ProgressBarWrapper>
           <CircleProgessBar value={vote_average * 10} />
         </ProgressBarWrapper>
       </ImageWrapper>
       <Figcaption>
-        <Title level={5}>{title}</Title>
+        <Title level={5}>{title.slice(0, 10) + "..."}</Title>
         <Paragraph>{release_date}</Paragraph>
       </Figcaption>
     </Wrapper>

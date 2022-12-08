@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { List, Tabs } from "antd";
 import axios from "axios";
+import { useCallback } from "react";
 import styled from "styled-components";
 import { Movie, MoviePage } from "../../types/movies";
 import CardMovie from "../CardMovie";
@@ -20,7 +21,6 @@ const ListMovie = () => {
       const list = await axios.get<MoviePage>(
         "https://api.themoviedb.org/3/movie/now_playing?api_key=9069d3a89486e93b4a352f983c84fff7&language=vi-VN&page=1"
       );
-      console.log({ list });
       return list.data;
     },
     getNextPageParam: (lastPage) => {
@@ -32,13 +32,13 @@ const ListMovie = () => {
     console.log(key);
   };
 
-  const renderMovies = (item: Movie, index: number) => {
+  const renderMovies = useCallback((item: Movie) => {
     return (
-      <List.Item key={`${index}a`}>
+      <List.Item key={item.id}>
         <CardMovie {...item} />
       </List.Item>
     );
-  };
+  }, []);
 
   return (
     <Wrapper>
@@ -74,11 +74,11 @@ const ListMovie = () => {
               />
             ),
           },
-          // {
-          //   label: "Top Rated",
-          //   key: "2",
-          //   children: renderMovies(),
-          // },
+          {
+            label: "Top Rated",
+            key: "2",
+            children: <div>123</div>,
+          },
         ]}
       />
     </Wrapper>
