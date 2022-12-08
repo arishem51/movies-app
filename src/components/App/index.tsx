@@ -1,6 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import Movies from "../Movies";
+import { QueryProvider } from "../QueryProvider";
 
 const GlobalStyles = createGlobalStyle`
 /*
@@ -59,10 +60,10 @@ p, h1, h2, h3, h4, h5, h6 {
 
 function App() {
   return (
-    <React.Fragment>
+    <QueryProvider>
       <GlobalStyles />
       <Movies />
-    </React.Fragment>
+    </QueryProvider>
   );
 }
 

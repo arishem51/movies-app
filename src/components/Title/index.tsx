@@ -16,6 +16,8 @@ const Title = (props: TitleProps) => {
   );
 };
 
+export default Title;
+
 export const WhiteTitle = styled(Title)`
   --text-color: ${COLORS.white};
 `;

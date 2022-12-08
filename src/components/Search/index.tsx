@@ -15,7 +15,7 @@ const Search = () => {
       <Text size={48} strong>
         Welcome
       </Text>
-      <Text size={40}>
+      <Text size={36}>
         Millions of movies, TV shows and people to discover. Explore now.
       </Text>
       <InputSearch
