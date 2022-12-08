@@ -56,7 +56,7 @@ const CardMovie = ({
   return (
     <Wrapper>
       <ImageWrapper>
-        <Anchor href="123">
+        <Anchor href="/">
           <Img src={`https://image.tmdb.org/t/p/original/${poster_path}`} />
         </Anchor>
         <ProgressBarWrapper>

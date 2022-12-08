@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getMovieTheaters } from "../../services/movies";
 
 export const MovieKey = {
-  getListTheaters: ["movies", "theaters", "infinite"],
+  getListTheaters: ["movies", "theaters", "infinite"] as const,
 };
 
 export const useMoviesTheaters = () => {
@@ -10,7 +10,7 @@ export const useMoviesTheaters = () => {
     queryKey: MovieKey["getListTheaters"],
     queryFn: getMovieTheaters,
     getNextPageParam: (lastPage) => {
-      return lastPage.total_pages - lastPage.page;
+      return lastPage.page < lastPage.total_pages;
     },
   });
 };

@@ -1,5 +1,5 @@
 import { List, Tabs } from "antd";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import styled from "styled-components";
 import { useMoviesTheaters } from "../../hook/react-query/movies";
 import { Movie } from "../../types/movies";
@@ -10,11 +10,25 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: clamp(300px, 85%, 1500px);
+  width: clamp(300px, 85%, 1900px);
 `;
 
 const ListMovie = () => {
-  const { isLoading, data, hasNextPage } = useMoviesTheaters();
+  const { isLoading, data, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useMoviesTheaters();
+
+  const moviesData = useMemo(() => {
+    if (!data?.pages) {
+      return [];
+    }
+    const newArr = [];
+    for (const page of data.pages) {
+      for (const movie of page.results) {
+        newArr.push(movie);
+      }
+    }
+    return newArr;
+  }, [data]);
 
   const onChange = (key: string) => {
     console.log(key);
@@ -44,20 +58,27 @@ const ListMovie = () => {
             children: (
               <List
                 grid={{
-                  column: 8,
-                  xxl: 8,
+                  column: 10,
+                  xxl: 10,
                   xl: 7,
                   lg: 6,
                   md: 5,
                   sm: 4,
                   xs: 3,
+                  gutter: 16,
                 }}
-                dataSource={data?.pages[0].results || []}
+                dataSource={moviesData}
                 pagination={{
-                  total: 20,
-                  pageSize: 8,
+                  total: data?.pages[0].total_results,
+                  pageSize: 20,
+                  showLessItems: true,
+                  onChange: (page) => {
+                    if (hasNextPage) {
+                      fetchNextPage({ pageParam: page });
+                    }
+                  },
                 }}
-                loading={isLoading}
+                loading={isLoading || isFetchingNextPage}
                 renderItem={renderMovies}
               />
             ),
