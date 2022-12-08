@@ -31,6 +31,9 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
+html :is(h1,h2,h3,h4,h5,h6,p,span,strong,b,i,em,mark,del,ins, sub,sup ){
+  font-family: 'Roboto', sans-serif !important;
+}
 /*
   6. Improve media defaults
 */
