@@ -1,4 +1,5 @@
 import { Layout } from "antd";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { WhiteTitle } from "../Title";
 
@@ -12,7 +13,9 @@ const Wrapper = styled(LayoutHeader)`
 const Header = () => {
   return (
     <Wrapper>
-      <WhiteTitle>Header</WhiteTitle>
+      <Link to="/">
+        <WhiteTitle>Header</WhiteTitle>
+      </Link>
     </Wrapper>
   );
 };

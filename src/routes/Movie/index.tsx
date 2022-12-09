@@ -143,7 +143,7 @@ const MovieDetail = () => {
         <Overlay />
         <Content>
           <WrapperImg>
-            <Img src={`${URL_IMG + data?.poster_path}`} />
+            <Img src={`${URL_IMG + data?.poster_path}`} alt="123" />
           </WrapperImg>
           <WrapperTextContent>
             <WrapperTitle>
@@ -158,18 +158,9 @@ const MovieDetail = () => {
               <Dot>·</Dot>
               <InfoText>{getTime(data?.runtime)}</InfoText>
             </WrapperInfoText>
-            <Italic>Sức mạnh sinh ra từ thịnh nộ</Italic>
+            <Italic>{data?.tagline}</Italic>
             <Overview>Overview</Overview>
-            <OverviewContent>
-              Dwayne Johnson sẽ góp mặt trong tác phẩm hành động - phiêu lưu mới
-              của New Line Cinema, mang tên BLACK ADAM. Đây là bộ phim đầu tiên
-              trên màn ảnh rộng khai thác câu chuyện của siêu anh hùng DC này,
-              dưới sự sáng tạo của đạo diễn Jaume Collet-Serra (đạo diễn của
-              Jungle Cruise). Gần 5.000 năm sau khi bị cầm tù với quyền năng tối
-              thượng từ những vị thần cổ đại, Black Adam (Dwayne Johnson) sẽ
-              được giải phóng khỏi nấm mồ chết chóc của mình, mang tới thế giới
-              hiện đại một kiểu nhận thức về công lý hoàn toàn mới.
-            </OverviewContent>
+            <OverviewContent>{data?.overview}</OverviewContent>
           </WrapperTextContent>
         </Content>
       </Banner>
