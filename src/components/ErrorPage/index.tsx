@@ -1,4 +1,5 @@
-import { useRouteError } from "react-router-dom";
+import { useEffect, useLayoutEffect } from "react";
+import { useNavigate, useRouteError } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -11,6 +12,10 @@ const Text = styled.h1`
 `;
 
 const ErrorPage = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/");
+  }, [navigate]);
   useRouteError();
   return (
     <Wrapper>
