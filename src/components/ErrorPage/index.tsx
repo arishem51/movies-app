@@ -1,5 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
-import { useNavigate, useRouteError } from "react-router-dom";
+import { useParams, useRouteError } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -12,11 +11,9 @@ const Text = styled.h1`
 `;
 
 const ErrorPage = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate("/");
-  }, [navigate]);
-  useRouteError();
+  const params = useParams();
+  const error = useRouteError();
+  console.log(error, params);
   return (
     <Wrapper>
       <Text>404 Not Found</Text>
