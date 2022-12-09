@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/movies-app",
     element: <App />,
     errorElement: <ErrorPage />,
     children: [

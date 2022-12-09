@@ -13,7 +13,7 @@ const Wrapper = styled(LayoutHeader)`
 const Header = () => {
   return (
     <Wrapper>
-      <Link to="/">
+      <Link to="/movies-app">
         <WhiteTitle>Header</WhiteTitle>
       </Link>
     </Wrapper>
