@@ -1,6 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import Movies from "../Layout";
+import Layout from "../Layout";
 import { QueryProvider } from "../QueryProvider";
 
 const GlobalStyles = createGlobalStyle`
@@ -65,7 +65,7 @@ function App() {
   return (
     <QueryProvider>
       <GlobalStyles />
-      <Movies />
+      <Layout />
     </QueryProvider>
   );
 }

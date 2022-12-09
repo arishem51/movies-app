@@ -4,8 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./components/App";
 import ErrorPage from "./components/ErrorPage";
 import Main from "./components/Main";
-import Movie from "./components/Movie";
+import { queryClient } from "./components/QueryProvider";
 import reportWebVitals from "./reportWebVitals";
+import MovieDetail from "./routes/Movie";
+import { movieLoader } from "./routes/Movie/movie.helper";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -23,7 +25,8 @@ const router = createBrowserRouter([
       },
       {
         path: "movies/:movieId",
-        element: <Movie />,
+        loader: () => movieLoader(queryClient),
+        element: <MovieDetail />,
       },
     ],
   },

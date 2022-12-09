@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BORDER_RADIUS, BOX_SHADOWS } from "../../constant";
+import { URL_IMG } from "../../services";
 import { Movie } from "../../types/movies";
 import CircleProgessBar from "../CircleProgressBar";
 import Title from "../Title";
@@ -57,7 +58,7 @@ const CardMovie = ({
     <Wrapper>
       <ImageWrapper>
         <Link to={`movies/${id}`}>
-          <Img src={`https://image.tmdb.org/t/p/original/${poster_path}`} />
+          <Img src={`${URL_IMG + poster_path}`} />
         </Link>
         <ProgressBarWrapper>
           <CircleProgessBar value={vote_average * 10} />

@@ -1,7 +1,7 @@
 import { QueryFunctionContext } from "@tanstack/react-query";
 import axios from "axios";
 import { MovieKey } from "../hook/react-query/movies";
-import { MoviePage } from "../types/movies";
+import { Movie, MoviePage } from "../types/movies";
 
 type MovieTheatersProps = QueryFunctionContext<
   typeof MovieKey["getListTheaters"]
@@ -26,4 +26,14 @@ export const getMovieTopRated = async ({
     `https://api.themoviedb.org/3/movie/top_rated?api_key=9069d3a89486e93b4a352f983c84fff7&language=vi-VN&page=${pageParam}`
   );
   return list.data;
+};
+
+export const getMovieDetails = async (id?: number | string) => {
+  if (!id) {
+    return;
+  }
+  const { data } = await axios.get<Movie>(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=9069d3a89486e93b4a352f983c84fff7&language=vi-VN`
+  );
+  return data;
 };

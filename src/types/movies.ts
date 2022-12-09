@@ -5,6 +5,10 @@ export type Movie = {
   vote_average: number;
   backdrop_path: string;
   poster_path: string;
+  overview: string;
+  genres: { id: number; name: string }[];
+  tagline: string;
+  runtime: number;
   // There's more property but this is enough
 };
 
